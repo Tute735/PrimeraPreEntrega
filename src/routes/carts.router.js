@@ -20,10 +20,10 @@
 
  router.post("/", async (req, res) => {
    try {
-     const newCart = {
+     const newCart = [{
        id: uuidv4(),
        products: [],
-     };
+     }];
 
      await cartManager.save(newCart); // Guardar el nuevo carrito
 

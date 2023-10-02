@@ -2,8 +2,11 @@
 import express from 'express';
 import ProductManager from '../manager/products.manager.js';
 
+
 const router = express.Router();
 const productManager = new ProductManager('src/productos.json');
+
+
 
 // Ruta para listar todos los productos
 router.get('/', async (req, res) => {

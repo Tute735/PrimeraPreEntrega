@@ -20,8 +20,7 @@ export default class ProductManager {
 
   async getById(id) {
     const products = await this.getAll();
-    const product = products.find(p => p.id === id);
-   
+    const product = products.find(p => p.id == id);
     if (!product) {
       throw new Error('Producto no encontrado');
     }
