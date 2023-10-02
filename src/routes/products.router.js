@@ -1,14 +1,9 @@
-// products.router.js
 import express from 'express';
 import ProductManager from '../manager/products.manager.js';
-
 
 const router = express.Router();
 const productManager = new ProductManager('src/productos.json');
 
-
-
-// Ruta para listar todos los productos
 router.get('/', async (req, res) => {
   try {
     const products = await productManager.getAll();
@@ -18,7 +13,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-// Ruta para obtener un producto por ID
 router.get('/:pid', async (req, res) => {
   try {
     const productId = parseInt(req.params.pid);
@@ -28,6 +22,7 @@ router.get('/:pid', async (req, res) => {
     res.status(404).json({ error: error.message });
   }
 });
+
 router.put('/:pid', async (req, res) => {
   try {
     const productId = parseInt(req.params.pid);
@@ -39,7 +34,7 @@ router.put('/:pid', async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
-// Ruta para agregar un nuevo producto
+
 router.post('/', async (req, res) => {
   try {
     const newProduct = await productManager.save(req.body);
@@ -49,7 +44,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-// Ruta para eliminar un producto por ID
 router.delete('/:pid', async (req, res) => {
   try {
     const productId = parseInt(req.params.pid);
