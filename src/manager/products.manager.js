@@ -7,17 +7,6 @@ export default class ProductManager {
     this.ruta = ruta;
   }
 
- 
-
-  async getById(id) {
-    const products = await this.getAll();
-    const product = products.find(p => p.id === id);
-    if (!product) {
-      throw new Error('Producto no encontrado');
-    }
-    return product;
-  }
-
   async getAll() {
     try {
       const products = await fs.readFile(this.ruta, 'utf-8');
@@ -28,6 +17,18 @@ export default class ProductManager {
     }
   }
 
+
+  async getById(id) {
+    const products = await this.getAll();
+    const product = products.find(p => p.id === id);
+   
+    if (!product) {
+      throw new Error('Producto no encontrado');
+    }
+    return product;
+  }
+
+ 
   async deleteById(id) {
     try {
       const products = await this.getAll();
